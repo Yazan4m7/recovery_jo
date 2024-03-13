@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +15,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        if (DB::table('categories')->count() == 0) {
+
+            DB::table('categories')->insert([
+            
+                    ['name' => 'Dress'],
+               
+                    ['name' => 'T-shirt'],
+               
+                    ['name' => 'Shoes'],
+               
+                    ['name' => 'Coats'],
+               
+                    ['name' => 'Jeans'],
+
+            ]);
+        } else {
+            echo "\e[31mTable is not empty, therefore NOT ";
+        }
     }
 }
+
