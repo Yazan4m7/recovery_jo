@@ -178,10 +178,7 @@ class CartController extends Controller
             ], 404);
         }
 
-        if (Auth::guard('api')->check()) {
-            $userID = auth('api')->user()->getAuthIdentifier();
-        }
-
+     
        
 
         $validator = Validator::make($request->all(), [
@@ -196,7 +193,7 @@ class CartController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors(),
+                'errorszzz' => $validator->errors(),
             ], 400);
         }
 
@@ -233,13 +230,14 @@ class CartController extends Controller
                     'transactionID' => $transactionID,
                 ]);
 
-                $cart->delete();
+                
 
                 return response()->json([
                     'message' => 'you\'re order has been completed succefully, thanks for shopping with us!',
                     'orderID' => $order->getKey(),
                     'Total amount ' => $TotalPrice,
                 ], 200);
+                $cart->delete();
             }
         } else {
             return response()->json([
